@@ -51,7 +51,7 @@ Use it as at your own risk, as it involves financial transaction, I don't bear a
 I solely recomend to use this code as a reference guide, and not to use it directly copy and pasting.
 
 If this really helped you, buy me a beer.
-Donate to  : paypal.me/chandrabhanudas
+Donate to  : https://paypal.me/chandrabhanudas
 
 Thanks
 
