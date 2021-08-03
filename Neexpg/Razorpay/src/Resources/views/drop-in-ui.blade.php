@@ -78,7 +78,7 @@
         <input type="hidden" name="order_id" value="{{$payment['oid']}}">
         <input type="hidden" name="name" value="{{$payment['name']}}">
         <input type="hidden" name="description" value="{{$payment['description']}}">
-        <input type="hidden" name="image" value="https://cdn.razorpay.com/logos/HSJXlixA6LP3TT_medium.png">
+        <input type="hidden" name="image" value="https://cdn.razorpay.com/logos/XXXXXXXXXX.png">
         <input type="hidden" name="prefill[contact]" value="{{$payment['mobile']}}">
         <input type="hidden" name="prefill[email]" value="{{$payment['email']}}">
         <input type="hidden" name="notes[shipping address]" value="{{$payment['address']}}">
