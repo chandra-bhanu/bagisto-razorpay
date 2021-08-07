@@ -1,37 +1,62 @@
-## Welcome to GitHub Pages
+# bagisto-razorpay
+Razorpay payment gateway for bagisto laravel ecommerce
 
-You can use the [editor on GitHub](https://github.com/chandra-bhanu/bagisto-razorpay/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+*Will update complete installation. meanwhile feel free to explore and make it work*
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+php artisan package:make-payment-method Neexpg/Razorpay
 
-# Header 1
-## Header 2
-### Header 3
+Remove all thing from 
+packages/Neexpg directory
 
-- Bulleted
-- List
+Place the content of the Repo to packages/Neexpg 
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+IN config/app.php.
+return [
+    ...
+    'providers' => [
+        ...
+        Neexpg/Razorpay\Providers\RazorpayServiceProvider::class,
+        ...
+    ]
+    ...
+];
 
-[Link](url) and ![Image](src)
-```
+After that, add you payment method namespace in psr-4 key in composer.json file for auto loading.
+"autoload": {
+    ...
+    "psr-4": {
+        ...
+        "Neexpg\\Razorpay\\": "packages/Neexpg/Razorpay/src"
+        ...
+    }
+    ...
+}
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+(Refer https://devdocs.bagisto.com/1.x/advanced/create-payment-method.html#_1-by-using-bagisto-package-generator)
 
-### Jekyll Themes
+Run composer dump-autoload.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/chandra-bhanu/bagisto-razorpay/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+After that run php artisan config:cache.
 
-### Support or Contact
+Now go to admin/config/sales/paymentmethods/ you will get razorpay
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+To get the payment info : status, razorpay_orderId, razorpay_paymentID
+ $additional=$order->payment->additional;
+ Will update it to synk to webhooks in next update
+
+*Note*
+As I didn't got any free extention to integrate  Razorpay in bagisto, created it in sheer need.
+Use it as at your own risk, as it involves financial transaction, I don't bear any responsibility.
+I solely recomend to use this code as a reference guide, and not to use it directly copy and pasting.
+
+If this really helped you, buy me a beer.
+Donate to  : https://paypal.me/chandrabhanudas
+
+Thanks
+
+
+
