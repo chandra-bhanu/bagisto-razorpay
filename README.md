@@ -44,6 +44,9 @@ After that run php artisan config:cache.
 
 Now go to admin/config/sales/paymentmethods/ you will get razorpay
 
+To get the payment info : status, razorpay_orderId, razorpay_paymentID
+ $additional=$order->payment->additional;
+ Will update it to synk to webhooks in next update
 
 *Note*
 As I didn't got any free extention to integrate  Razorpay in bagisto, created it in sheer need.
