@@ -38,6 +38,13 @@ After that, add you payment method namespace in psr-4 key in composer.json file 
 
 (Refer https://devdocs.bagisto.com/1.x/advanced/create-payment-method.html#_1-by-using-bagisto-package-generator)
 
+
+"files":[
+          "packages/Neexpg/razorpay-php/Razorpay.php"
+        ],
+
+
+
 Run composer dump-autoload.
 
 After that run php artisan config:cache.
