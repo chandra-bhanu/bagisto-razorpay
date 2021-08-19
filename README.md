@@ -43,7 +43,8 @@ After that, add you payment method namespace in psr-4 key in composer.json file 
           "packages/Neexpg/razorpay-php/Razorpay.php"
         ],
 
-
+iN mIDDLEWIRE/verifyCRFtoken file
+,'razorpay/payment/success','razorpay/payment/fail','razorpay/payment/razorpay-hook'
 
 Run composer dump-autoload.
 
