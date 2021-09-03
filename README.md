@@ -56,6 +56,27 @@ To get the payment info : status, razorpay_orderId, razorpay_paymentID
  $additional=$order->payment->additional;
  Will update it to synk to webhooks in next update
 
+*WebHook*
+webhook Url : <YOUR DOMAIN>/razorpay/payment/razorpay-hook
+    
+Create a DB table rzp_payment to handle webhooks: SQL statement is available on header of : packages/Neexpg/Razorpay/src/Models/RazorpayEvents.php
+ /*CREATE TABLE `rzp_payments` (
+  `id` int(11) NOT NULL,
+  `razorpay_event_id` varchar(50) DEFAULT NULL,  
+  `razorpay_invoice_id` varchar(40) DEFAULT NULL,
+  `razorpay_order_id` varchar(80) DEFAULT NULL,
+  `razorpay_payment_id` varchar(40) DEFAULT NULL,
+  `razorpay_invoice_status` varchar(40) DEFAULT 'issued',
+  `razorpay_invoice_receipt` varchar(40) DEFAULT NULL,
+  `razorpay_signature` longtext,  
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;*/   
+
+
+
+
 *Note*
 As I didn't got any free extention to integrate  Razorpay in bagisto, created it in sheer need.
 Use it as at your own risk, as it involves financial transaction, I don't bear any responsibility.
