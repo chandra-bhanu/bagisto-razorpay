@@ -1,4 +1,6 @@
 # Bagisto Razorpay Payment Gateway Integration
+ <img src="https://raw.githubusercontent.com/dwyl/repo-badges/master/highresPNGs/build-passing.png"  height="25">
+
 ### Razorpay payment gateway for bagisto laravel ecommerce with test mode & webhook support
  <img src="https://devdocs.bagisto.com/logo.png?__WB_REVISION__=7623b31ea8912e775aa903f3da491179"  height="100"> <img src="https://razorpay.com/assets/razorpay-logo.svg" width="200" height="100">
 _____________________________________________________________________________________
