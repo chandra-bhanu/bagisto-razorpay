@@ -109,6 +109,7 @@ class RazorpayController extends Controller
                 //Make entry for webhook event IDS
                 //STORE IN PAYMENT GATEWAY
                 $paymentEvents = new RazorpayEvents();
+                $paymentEvents->core_order_id=$this->order->id;
                 $paymentEvents->razorpay_order_id =$pgorderId;
                 $paymentEvents->razorpay_invoice_status = 'pending_payment';
                 $paymentEvents->save();
@@ -154,6 +155,8 @@ class RazorpayController extends Controller
         $webhookBody= json_decode($request->getContent());
         $pass=0;
         
+     
+        
         $generatedSignature = hash_hmac('sha256',$request->getContent(), $privateKey);
         if ($generatedSignature == $webhookSignature):
             
@@ -178,6 +181,7 @@ class RazorpayController extends Controller
                     
                     $pgId=$pgData->id;
                     if($pgstatus=='captured' || $pgstatus=='paid'):
+                       
                         //Updatee Payments
                         $rzp = RazorpayEvents::find($pgId);
                         $rzp->razorpay_event_id = $eventId;
@@ -189,8 +193,9 @@ class RazorpayController extends Controller
                         
                         
                         //UPDATE ORDER core_order_id
-                        $PGorder= OrderPayment::where('order_id',$pgData->core_order_id)->whereJsonContains('additional->status','Paid')->firstOrFail();
-                        if($PGorder->count()<1):
+                        $PGorder= OrderPayment::where('order_id',$pgData->core_order_id)->firstOrFail(); //->whereJsonContains('additional->status','Paid')
+                       
+                        if($PGorder->count()>0  && strtolower($PGorder->additional['status']) !='paid'):
                             
                             $pgUpdateD = OrderPayment::where('order_id',$pgData->core_order_id)->firstOrFail();
                             $additional=array();
@@ -293,7 +298,8 @@ class RazorpayController extends Controller
                 ]);
             
                $pgUpdateD = OrderPayment::where('order_id',$this->order->id)->firstOrFail();
-                $additional=array();
+               
+               $additional=array();
                 $additional['status']='Paid';
                 $additional['oid']=$request['razorpay_order_id'];
                 $additional['pgreference']=$request['razorpay_payment_id'];                
@@ -308,7 +314,7 @@ class RazorpayController extends Controller
                 $link=$orderdata->items[0];
                 
                 $rzp = RazorpayEvents::where('razorpay_order_id', $request['razorpay_order_id'])->first();
-                $rzp->core_order_id=$this->order->id;
+                
                 $rzp->razorpay_payment_id = $link->id;
                 $rzp->razorpay_invoice_status = $link->status;
                 $rzp->razorpay_signature = $request['razorpay_signature'];
