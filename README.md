@@ -80,7 +80,11 @@ CREATE TABLE `rzp_payments` (
 **In Terminal**<br/>
 ```
 composer dump-autoload
+php artisan optimize
+php artisan route:cache
 php artisan config:cache
+php artisan view:cache
+
 ```
 **All SET**<br/>
 Now go to admin/config/sales/paymentmethods/ you will get razorpay<br/>
