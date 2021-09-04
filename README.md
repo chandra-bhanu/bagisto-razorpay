@@ -84,7 +84,7 @@ php artisan config:cache
 Now go to admin/config/sales/paymentmethods/ you will get razorpay<br/>
 
 
-***To access razorpay payment details : OrderId, Status, PaymentID*
+**To access razorpay payment details : OrderId, Status, PaymentID**
 ```
 On Order Object you can query:
 $additional=$order->payment->additional;
