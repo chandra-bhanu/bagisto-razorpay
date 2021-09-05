@@ -236,7 +236,7 @@ class RazorpayController extends Controller
                 $pgUpdateD->additional=$additional;
                 $pgUpdateD->save();
                 
-                $rzp = RazorpayEvents::where('razorpay_order_id', $this->order->id)->first();
+                $rzp = RazorpayEvents::where('core_order_id', $this->order->id)->first();
                 $rzp->razorpay_invoice_status = 'canceled';
                 $rzp->save();
                 
